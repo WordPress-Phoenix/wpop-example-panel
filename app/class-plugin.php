@@ -1,38 +1,75 @@
 <?php
 
-namespace WPOP\Example;
+namespace WPOP_Example\V_1_0;
 
+use WPOP_Example\V_1_0\Admin;
+use WPOP_Example\V_1_0\Includes;
 use WPAZ_Plugin_Base\V_2_5\Abstract_Plugin;
 
 /**
- * Class App
+ * Class Plugin
+ * @package Wpop_example_panel
  */
 class Plugin extends Abstract_Plugin {
 
+	/**
+	 * @var string
+	 */
 	public static $autoload_class_prefix = __NAMESPACE__;
-	protected static $current_file = __FILE__;
+
+	/**
+	 * @var string
+	 */
 	public static $autoload_type = 'psr-4';
-	// Set to 2 when you use 2 namespaces in the main app file
+
+	/**
+	 * @var int
+	 */
 	public static $autoload_ns_match_depth = 2;
 
-	public function onload( $instance ) {
-		// Nothing yet
-	} // END public function __construct
+	/**
+	 * @var string
+	 */
+	protected static $current_file = __FILE__;
 
+	/**
+	 * @param mixed $instance
+	 */
+	public function onload( $instance ) {
+	}
+
+	/**
+	 * Initialize public / shared functionality
+	 */
 	public function init() {
 		do_action( get_called_class() . '_before_init' );
-
+		new Includes\Init(
+					trailingslashit( $this->installed_dir ),
+					trailingslashit( $this->installed_url ),
+					$this->version
+				);
 		do_action( get_called_class() . '_after_init' );
 	}
 
+	/**
+	 * Initialize functionality only loaded for logged-in users
+	 */
 	public function authenticated_init() {
 		if ( is_user_logged_in() ) {
-			new Full_Demo();
+			do_action( get_called_class() . '_before_authenticated_init' );
+			new Admin\Init(
+					trailingslashit( $this->installed_dir ),
+					trailingslashit( $this->installed_url ),
+					$this->version
+				);
+			do_action( get_called_class() . '_after_authenticated_init' );
 		}
 	}
 
+	/**
+	 * @return mixed|void
+	 */
 	protected function defines_and_globals() {
-		// None yet.
 	}
 
-} // END class
+} // END class Plugin
