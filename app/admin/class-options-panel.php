@@ -43,9 +43,9 @@ class Options_Panel {
 	function setup_site_options() {
 
 		$sections = array(
-			'simple' => $this->general_section(),
+			'simple'   => $this->general_section(),
 			'advanced' => $this->advanced_section(),
-			'wordpress' => $this->wordpress_section(),
+//			'wordpress' => $this->wordpress_section(),
 			'encrypted' => $this->encrypted_section()
 		);
 
@@ -57,10 +57,10 @@ class Options_Panel {
 
 	function general_section() {
 		return array(
-			'label' => 'General',
+			'label'    => 'General',
 			'dashicon' => 'dashicons-admin-generic',
-			'parts' => array(
-				'wpop_example_plugin_text' => array(
+			'parts'    => array(
+				'wpop_example_plugin_text'     => array(
 					'label' => 'Text Field',
 					'field' => 'Text',
 				),
@@ -68,11 +68,11 @@ class Options_Panel {
 					'label' => 'Textarea Field',
 					'field' => 'Textarea',
 				),
-				'wpop_example_plugin_number' => array(
+				'wpop_example_plugin_number'   => array(
 					'label' => 'Number Field',
 					'field' => 'Number',
 				),
-				'wpop_example_plugin_url' => array(
+				'wpop_example_plugin_url'      => array(
 					'label' => 'Url Field',
 					'field' => 'Url',
 				),
@@ -82,30 +82,45 @@ class Options_Panel {
 
 	function advanced_section() {
 		return array(
-			'label' => 'Advanced',
+			'label'    => 'Advanced',
 			'dashicon' => 'dashicons-admin-generic',
-			'parts' => array(
-				'wpop_example_plugin_select' => array(
-					'label' => 'Select Field',
-					'field' => 'Select',
+			'parts'    => array(
+				'wpop_example_plugin_select'        => array(
+					'label'  => 'Select Field',
+					'field'  => 'Select',
+					'values' => array(
+						'uno'  => 'First',
+						'dos'  => 'Second',
+						'tres' => 'Third',
+					),
 				),
-				'wpop_example_plugin_multiselect' => array(
-					'label' => 'Multiselect Field',
-					'field' => 'Multiselect',
+				'wpop_example_plugin_multiselect'   => array(
+					'label'  => 'Multiselect Field',
+					'field'  => 'Multiselect',
+					'values' => array(
+						'party'   => 'Party',
+						'fiesta'  => 'Fiesta',
+						'cookout' => 'Cookout',
+					),
 				),
 				'wpop_example_plugin_toggle_switch' => array(
 					'label' => 'Toggle Switch Field',
 					'field' => 'Toggle_Switch',
 				),
-				'wpop_example_plugin_radios' => array(
+				'wpop_example_plugin_radios'        => array(
 					'label' => 'Radio Field',
 					'field' => 'Radio_Buttons',
+					'values' => array(
+						'party'   => 'Party',
+						'fiesta'  => 'Fiesta',
+						'cookout' => 'Cookout',
+					),
 				),
-				'wpop_example_plugin_partial' => array(
+				'wpop_example_plugin_partial'       => array(
 					'label' => 'Partial Field',
 					'field' => 'Include_Partial',
 				),
-				'wpop_example_plugin_markup' => array(
+				'wpop_example_plugin_markup'        => array(
 					'label' => 'Radio Field',
 					'field' => 'Include_Markup',
 				),
@@ -115,18 +130,18 @@ class Options_Panel {
 
 	function wordpress_section() {
 		return array(
-			'label' => 'WordPress',
+			'label'    => 'WordPress',
 			'dashicon' => 'dashicons-wordpress-alt',
-			'parts' => array(
+			'parts'    => array(
 				'wpop_example_plugin_color_picker' => array(
 					'label' => 'Color Field',
 					'field' => 'Color_Picker',
 				),
-				'wpop_example_plugin_editor' => array(
-					'label' => 'Editor Field',
-					'field' => 'Editor',
-				),
-				'wpop_example_plugin_media' => array(
+//				'wpop_example_plugin_editor' => array(
+//					'label' => 'Editor Field',
+//					'field' => 'Editor',
+//				),
+				'wpop_example_plugin_media'        => array(
 					'label' => 'Media Field',
 					'field' => 'Media'
 				),
@@ -136,9 +151,9 @@ class Options_Panel {
 
 	function encrypted_section() {
 		return array(
-			'label' => 'Encrypted',
+			'label'    => 'Encrypted',
 			'dashicon' => 'dashicons-lock',
-			'parts' => array(
+			'parts'    => array(
 				'wpop_example_plugin_password' => array(
 					'label' => 'Password Field',
 					'field' => 'Password',
@@ -149,13 +164,12 @@ class Options_Panel {
 
 	function site_options_config() {
 		return array(
-			'parent_id'  => 'options-general.php',
-			'id'         => 'wpop-example-panel-opts',
-			'page_title' => 'WPOP Example Panel Settings' .
-			                ' <small style="font-size:0.66rem;"><code>wpop-example-panel</code></small>',
-			'menu_title' => 'WPOP Example Panel',
-			'dashicon'   => 'dashicons-admin-settings',
-			'api'        => 'site'
+			'parent_page_id' => 'options-general.php',
+			'id'             => 'wpop-example-panel-opts',
+			'page_title'     => 'WPOP Example Panel Settings',
+			'menu_title'     => 'WPOP Example Panel',
+			'dashicon'       => 'dashicons-admin-settings',
+			'api'            => 'site'
 		);
 	}
 
