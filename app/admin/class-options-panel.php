@@ -2,7 +2,7 @@
 
 namespace WPOP_Example\V_1_0\Admin;
 
-use WPOP\V_3_5 as Opts;
+use WPOP\V_3_0 as Opts;
 
 /**
  * Class Options_Panel
