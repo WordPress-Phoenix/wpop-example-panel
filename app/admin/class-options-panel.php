@@ -2,7 +2,7 @@
 
 namespace WPOP_Example\V_1_0\Admin;
 
-use WPOP\V_3_0 as Opts;
+use WPOP\V_3_1 as Opts;
 
 /**
  * Class Options_Panel
@@ -43,16 +43,33 @@ class Options_Panel {
 	function setup_site_options() {
 
 		$sections = array(
-			'simple'   => $this->general_section(),
-			'advanced' => $this->advanced_section(),
-//			'wordpress' => $this->wordpress_section(),
-			'encrypted' => $this->encrypted_section()
+			'simple'    => $this->general_section(),
+			'advanced'  => $this->advanced_section(),
+			'media'     => $this->media_section(),
+			'editors'   => $this->editors_section(),
+			'wordpress' => $this->wordpress_section(),
+			'encrypted' => $this->encrypted_section(),
+			'includes'  => $this->include_section(),
 		);
 
-		$this->site_options = new Opts\page( $this->site_options_config(), $sections );
+		$this->site_options = new Opts\page(
+			$this->site_options_config(),
+			$sections
+		);
 
 		// initialize_panel() is a function in the opt panel Container class
 		$this->site_options->initialize_panel();
+	}
+
+	function site_options_config() {
+		return array(
+			'parent_page_id' => 'options-general.php',
+			'id'             => 'wpop-example-panel-opts',
+			'page_title'     => 'WPOP Example Panel Settings',
+			'menu_title'     => 'WPOP Example Panel',
+			'dashicon'       => 'dashicons-admin-settings',
+			'api'            => 'site'
+		);
 	}
 
 	function general_section() {
@@ -62,19 +79,23 @@ class Options_Panel {
 			'parts'    => array(
 				'wpop_example_plugin_text'     => array(
 					'label' => 'Text Field',
-					'field' => 'Text',
+					'part'  => 'text',
 				),
 				'wpop_example_plugin_textarea' => array(
 					'label' => 'Textarea Field',
-					'field' => 'Textarea',
+					'part'  => 'textarea',
 				),
 				'wpop_example_plugin_number'   => array(
 					'label' => 'Number Field',
-					'field' => 'Number',
+					'part'  => 'number',
 				),
 				'wpop_example_plugin_url'      => array(
-					'label' => 'Url Field',
-					'field' => 'Url',
+					'label' => 'URL Field',
+					'part'  => 'url',
+				),
+				'wpop_example_plugin_email'    => array(
+					'label' => 'Email Field',
+					'part'  => 'email',
 				),
 			),
 		);
@@ -83,11 +104,11 @@ class Options_Panel {
 	function advanced_section() {
 		return array(
 			'label'    => 'Advanced',
-			'dashicon' => 'dashicons-admin-generic',
+			'dashicon' => 'dashicons-forms',
 			'parts'    => array(
 				'wpop_example_plugin_select'        => array(
 					'label'  => 'Select Field',
-					'field'  => 'Select',
+					'part'   => 'select',
 					'values' => array(
 						'uno'  => 'First',
 						'dos'  => 'Second',
@@ -96,7 +117,7 @@ class Options_Panel {
 				),
 				'wpop_example_plugin_multiselect'   => array(
 					'label'  => 'Multiselect Field',
-					'field'  => 'Multiselect',
+					'part'   => 'multiselect',
 					'values' => array(
 						'party'   => 'Party',
 						'fiesta'  => 'Fiesta',
@@ -105,26 +126,56 @@ class Options_Panel {
 				),
 				'wpop_example_plugin_toggle_switch' => array(
 					'label' => 'Toggle Switch Field',
-					'field' => 'Toggle_Switch',
+					'part'  => 'toggle_switch',
 				),
 				'wpop_example_plugin_radios'        => array(
-					'label' => 'Radio Field',
-					'field' => 'Radio_Buttons',
+					'label'  => 'Radio Field',
+					'part'   => 'radio_buttons',
 					'values' => array(
 						'party'   => 'Party',
 						'fiesta'  => 'Fiesta',
 						'cookout' => 'Cookout',
 					),
 				),
-				'wpop_example_plugin_partial'       => array(
-					'label' => 'Partial Field',
-					'field' => 'Include_Partial',
-				),
-				'wpop_example_plugin_markup'        => array(
-					'label' => 'Radio Field',
-					'field' => 'Include_Markup',
-				),
 			),
+		);
+	}
+
+	function media_section() {
+		return array(
+			'label'    => 'Media',
+			'dashicon' => 'dashicons-admin-media',
+			'parts'    => array(
+				'wpop_example_plugin_media' => array(
+					'label' => 'Media Field',
+					'part'  => 'media'
+				)
+			),
+		);
+	}
+
+	function editors_section() {
+		return array(
+			'label'    => 'Editors',
+			'dashicon' => 'dashicons-edit',
+			'parts'    => array(
+				'wpop_example_plugin_editor' => array(
+					'label' => 'Editor Field',
+					'part'  => 'editor',
+				),
+				'wpop_example_plugin_nohtml' => array(
+					'label'        => 'Editor - No HTML Toggle',
+					'part'         => 'Editor',
+					'no_quicktags' => 'true',
+				),
+				'wpop_example_plugin_simple' => array(
+					'label'        => 'Editor Simple',
+					'part'         => 'editor',
+					'teeny'        => 'true',
+					'no_media'     => 'true',
+					'no_quicktags' => 'true'
+				),
+			)
 		);
 	}
 
@@ -133,18 +184,10 @@ class Options_Panel {
 			'label'    => 'WordPress',
 			'dashicon' => 'dashicons-wordpress-alt',
 			'parts'    => array(
-				'wpop_example_plugin_color_picker' => array(
+				'wpop_example_plugin_color' => array(
 					'label' => 'Color Field',
-					'field' => 'Color_Picker',
-				),
-//				'wpop_example_plugin_editor' => array(
-//					'label' => 'Editor Field',
-//					'field' => 'Editor',
-//				),
-				'wpop_example_plugin_media'        => array(
-					'label' => 'Media Field',
-					'field' => 'Media'
-				),
+					'part'  => 'color',
+				)
 			),
 		);
 	}
@@ -156,20 +199,23 @@ class Options_Panel {
 			'parts'    => array(
 				'wpop_example_plugin_password' => array(
 					'label' => 'Password Field',
-					'field' => 'Password',
+					'part'  => 'password',
 				),
 			),
 		);
 	}
 
-	function site_options_config() {
+	function include_section() {
 		return array(
-			'parent_page_id' => 'options-general.php',
-			'id'             => 'wpop-example-panel-opts',
-			'page_title'     => 'WPOP Example Panel Settings',
-			'menu_title'     => 'WPOP Example Panel',
-			'dashicon'       => 'dashicons-admin-settings',
-			'api'            => 'site'
+			'label'     => 'Includes',
+			'dashicons' => 'dashicons-file',
+			'parts'     => array(
+				'wpop_example_plugin_markdown_file' => array(
+					'label'    => 'Markdown Field',
+					'part'     => 'markdown',
+					'filename' => $this->installed_dir . 'assets/example_include_markdown.md'
+				),
+			),
 		);
 	}
 

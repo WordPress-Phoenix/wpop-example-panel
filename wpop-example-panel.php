@@ -34,8 +34,12 @@ if ( ! class_exists( 'WPAZ_Plugin_Base\\V_2_5\\Abstract_Plugin' ) ) {
 }
 				
 // Load Options Panel
-if ( ! class_exists( 'WPOP\V_3_5\\Page' ) ) {
+if ( ! class_exists( 'WPOP\\V_3_45\\Page' ) ) {
 	include_once  trailingslashit( dirname( __FILE__ ) )  . 'vendor/wordpress-phoenix/wordpress-options-builder-class/wordpress-phoenix-options-panel.php';
+}
+
+if ( ! class_exists( 'Parsedown' ) ) {
+	include_once trailingslashit( dirname( __FILE__ ) ) . 'vendor/erusev/parsedown/Parsedown.php';
 }
 
 /**

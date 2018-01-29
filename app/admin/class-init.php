@@ -47,6 +47,23 @@ class Init {
 			$this->installed_dir,
 			$this->installed_url
 		);
+
+		// initialize site options panel
+		new Network_Options_Panel(
+			$this->installed_dir,
+			$this->installed_url
+		);
+
+		// initialize term meta panel
+		new Term_Panel(
+			$this->installed_dir,
+			$this->installed_url
+		);
+
+		new User_Network_Panel(
+			$this->installed_dir,
+			$this->installed_url
+		);
 	}
 
 }
