@@ -1,10 +1,15 @@
 <?php
 
-namespace WPOP_Example\V_1_0;
+namespace WordPressPhoenix\WPOP_Example;
 
-use WPOP_Example\V_1_0\Admin;
-use WPOP_Example\V_1_0\Includes;
-use WPAZ_Plugin_Base\V_2_5\Abstract_Plugin;
+use WordPressPhoenix\WPOP_Example\Admin;
+use WPAZ_Plugin_Base\V_2_6\Abstract_Plugin;
+
+if ( ! function_exists( 'add_filter' ) ) {
+	header( 'Status: 403 Forbidden' );
+	header( 'HTTP/1.1 403 Forbidden' );
+	exit(); /* protects plugin source from public view */
+}
 
 /**
  * Class Plugin
@@ -30,7 +35,13 @@ class Plugin extends Abstract_Plugin {
 	/**
 	 * @var string
 	 */
+	public static $action_prefix = 'wpop_example_panel_';
+
+	/**
+	 * @var string
+	 */
 	protected static $current_file = __FILE__;
+
 
 	/**
 	 * @param mixed $instance
@@ -39,30 +50,27 @@ class Plugin extends Abstract_Plugin {
 	}
 
 	/**
-	 * Initialize public / shared functionality
+	 * Initialize public / shared functionality using new Class(), add_action() or add_filter().
 	 */
 	public function init() {
-		do_action( get_called_class() . '_before_init' );
-		new Includes\Init(
-					trailingslashit( $this->installed_dir ),
-					trailingslashit( $this->installed_url ),
-					$this->version
-				);
-		do_action( get_called_class() . '_after_init' );
+		do_action( static::$action_prefix . 'before_init' );
+
+		do_action( static::$action_prefix . 'after_init' );
 	}
 
 	/**
-	 * Initialize functionality only loaded for logged-in users
+	 * Initialize functionality only loaded for logged-in users.
 	 */
 	public function authenticated_init() {
 		if ( is_user_logged_in() ) {
-			do_action( get_called_class() . '_before_authenticated_init' );
-			new Admin\Init(
-					trailingslashit( $this->installed_dir ),
-					trailingslashit( $this->installed_url ),
-					$this->version
-				);
-			do_action( get_called_class() . '_after_authenticated_init' );
+			do_action( static::$action_prefix . 'before_authenticated_init' );
+			// $this->admin is in the abstract plugin base class
+			$this->admin = new Admin\App(
+				$this->installed_dir,
+				$this->installed_url,
+				$this->version
+			);
+			do_action( static::$action_prefix . 'after_authenticated_init' );
 		}
 	}
 

@@ -1,14 +1,31 @@
 {
-  "require-dev": {
-    "wp-coding-standards/wpcs": "^0.10"
-  },
-  "scripts": {
-	"test": "composer lint",
-	"lint": "./vendor/bin/phpcs --standard=./phpcs.xml --extensions='php,js,css' ./",
-	"post-install-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/",
-	"post-update-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/"
-  },
+  "name": "wpop-example-panel",
+  "description": "Examples of implementing the WPOP class as options and metadata fields.",
+  "keywords": [
+	"wordpress",
+	"site-options",
+	"utility",
+	"helper"
+  ],
+  "homepage": "https://github.com/wordpress-phoenix/wpop-example-panel",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+	{
+	  "name": "WordPress Phoenix",
+	  "email": "code.devwalker@domain.test",
+	  "homepage": "https://github.com/wordpress-phoenix/wpop-example-panel",
+	  "role": "Developer"
+	}
+  ],
   "require": {
-    "erusev/parsedown": "^1.6"
+	"WordPress-Phoenix/abstract-plugin-base": "^2.6"
+  },
+  "config": {
+	"vendor-dir": "lib"
+  },
+  "autoload": {
+	"classmap": [
+	  "/"
+	]
   }
 }

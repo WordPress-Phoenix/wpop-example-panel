@@ -2,58 +2,45 @@
 /**
  * WPOP Example Panel
  *
+ * @wordpress-plugin
  * @package     Wpop_example_panel
  * @author      David Ryan - WordPress Phoenix
  * @license     GNU GPL v2.0+
  * @link        https://github.com/wordpress-phoenix
- * @version     1.0.0
+ * @version     2.0.0
  *
- * Built using WP PHX Plugin Generator v1.1.0 on Tuesday 23rd of January 2018 04:50:38 AM
+ * Built with WP PHX WordPress Development Toolkit v3.0.0 on Sunday 8th of April 2018 05:54:29 PM
  * @link https://github.com/WordPress-Phoenix/wordpress-development-toolkit
  *
- * @wordpress-plugin
  * Plugin Name: WPOP Example Panel
  * Plugin URI: https://github.com/wordpress-phoenix
- * Description: Working example of the WordPress Phoenix Options Panel
- * Version: 1.0.0
+ * Description: Examples of implementing the WPOP class as options and metadata fields.
+ * Version: 2.0.0
  * Author: David Ryan  - WordPress Phoenix
  * Text Domain: wpop-example-panel
  * License: GNU GPL v2.0+
  */
-if ( ! function_exists( 'add_filter' ) ) { // prevent snooping file source, check wp loaded
+
+if ( ! function_exists( 'add_filter' ) ) {
 	header( 'Status: 403 Forbidden' );
 	header( 'HTTP/1.1 403 Forbidden' );
-	exit();
+	exit(); /* protects plugin source from public view */
+}
+
+$current_dir = trailingslashit( dirname( __FILE__ ) );
+
+/**
+ * 3RD PARTY DEPENDENCIES
+ * (manually include_once dependencies installed via composer for safety)
+ */
+if ( ! class_exists( 'WPAZ_Plugin_Base\\V_2_6\\Abstract_Plugin' ) ) {
+	include_once $current_dir . 'lib/wordpress-phoenix/abstract-plugin-base/src/abstract-plugin.php';
 }
 
 /**
- * Check Abstract_Plugin Instantiated
+ * INTERNAL DEPENDENCIES (autoloader defined in main plugin class)
  */
-if ( ! class_exists( 'WPAZ_Plugin_Base\\V_2_5\\Abstract_Plugin' ) ) {
-	include_once trailingslashit( dirname( __FILE__ ) ) . 'vendor/wordpress-phoenix/abstract-plugin-base/src/abstract-plugin.php';
-}
-				
-// Load Options Panel
-if ( ! class_exists( 'WPOP\\V_3_45\\Page' ) ) {
-	include_once  trailingslashit( dirname( __FILE__ ) )  . 'vendor/wordpress-phoenix/wordpress-options-builder-class/wordpress-phoenix-options-panel.php';
-}
+include_once $current_dir . 'app/class-plugin.php';
 
-if ( ! class_exists( 'Parsedown' ) ) {
-	include_once trailingslashit( dirname( __FILE__ ) ) . 'vendor/erusev/parsedown/Parsedown.php';
-}
-
-/**
- * Check WPOP_Example\V_1_0\Plugin Instantiated
- * (The check prevents fatal error if multiple copies of plugin are activated or namespaces aren't unique)
- */
-if ( ! class_exists( 'WPOP_Example\\V_1_0\\Plugin' ) ) {
-	include_once trailingslashit( dirname( __FILE__ ) ) . 'app/class-plugin.php';
-} else {
-	new WP_Error( '500', 'Multiple copies of WPOP_Example\V_1_0\Plugin are active' );
-}
-
-/**
- * Start WPOP Example Panel Main Plugin Class
- */
-WPOP_Example\V_1_0\Plugin::run( __FILE__ );
+WordPressPhoenix\WPOP_Example\Plugin::run( __FILE__ );
 // Please don't edit below this line.
