@@ -36,6 +36,11 @@ class App {
 		$this->version       = $version;
 
 		// put your new Class() or add_action() here.
+		new Example_Panels(
+			$this->installed_dir,
+			$this->installed_url,
+			$this->version
+		);
 	}
 
 }
