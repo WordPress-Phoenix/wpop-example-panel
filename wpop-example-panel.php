@@ -21,11 +21,7 @@
  * License: GNU GPL v2.0+
  */
 
-if ( ! function_exists( 'add_filter' ) ) {
-	header( 'Status: 403 Forbidden' );
-	header( 'HTTP/1.1 403 Forbidden' );
-	exit(); /* protects plugin source from public view */
-}
+defined( 'ABSPATH' ) or die(); // WordPress must exist.
 
 $current_dir = trailingslashit( dirname( __FILE__ ) );
 
@@ -42,7 +38,7 @@ if ( ! class_exists( '\\Parsedown' ) ) {
 }
 
 if ( ! class_exists( '\\WPOP\\V_4_1\\Panel' ) ) {
-	include_once $current_dir . 'lib/wordpress-phoenix/wordpress-phoenix-options-panel/wpop-init.php';
+	include_once $current_dir . 'lib/wordpress-phoenix/wordpress-options-builder-class/src/wordpress-options-panels.php';
 }
 
 /**
@@ -51,4 +47,3 @@ if ( ! class_exists( '\\WPOP\\V_4_1\\Panel' ) ) {
 include_once $current_dir . 'app/class-plugin.php';
 
 WordPressPhoenix\WPOP_Example\Plugin::run( __FILE__ );
-// Please don't edit below this line.
