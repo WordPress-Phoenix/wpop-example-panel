@@ -37,12 +37,8 @@ if ( ! class_exists( '\\WPAZ_Plugin_Base\\V_2_6\\Abstract_Plugin' ) ) {
 	include_once $current_dir . 'lib/wordpress-phoenix/abstract-plugin-base/src/abstract-plugin.php';
 }
 
-if ( ! class_exists( '\\Parsedown' ) ) {
-	include_once  $current_dir . 'lib/erusev/parsedown/Parsedown.php';
-}
-
-if ( ! class_exists( '\\WPOP\\V_4_1\\Panel' ) ) {
-	include_once $current_dir . 'lib/wordpress-phoenix/wordpress-phoenix-options-panel/wpop-init.php';
+if ( ! class_exists( '\\WPOP\\V_5_0\\Panel' ) ) {
+	include_once $current_dir . 'lib/wordpress-phoenix/wordpress-options-builder-class/src/class-wordpress-options-panels.php';
 }
 
 /**
