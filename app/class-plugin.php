@@ -68,7 +68,8 @@ class Plugin extends Abstract_Plugin {
 			$this->admin = new Admin\App(
 				$this->installed_dir,
 				$this->installed_url,
-				$this->version
+				$this->version,
+				$this->plugin_basedir
 			);
 			do_action( static::$action_prefix . 'after_authenticated_init' );
 		}
