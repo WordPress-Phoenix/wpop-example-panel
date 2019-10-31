@@ -4,6 +4,7 @@ namespace WordPressPhoenix\WPOP_Example\Admin;
 
 /**
  * Class App
+ *
  * @package Wpop_example_panel
  */
 class App {
@@ -35,11 +36,14 @@ class App {
 		$this->installed_url = $installed_url;
 		$this->version       = $version;
 
-		// put your new Class() or add_action() here.
+		// Initialize the panels class object.
+		$wpop = new \WordPress_Options_Panels( $this->installed_dir, $this->installed_url );
+
 		new Example_Panels(
 			$this->installed_dir,
 			$this->installed_url,
-			$this->version
+			$this->version,
+			$wpop
 		);
 	}
 

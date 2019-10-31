@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b057c780da618bbe7d2905eaff90c41",
+    "content-hash": "017352a5a0d81dbfeadadfc65e994094",
     "packages": [
         {
             "name": "composer/installers",
@@ -219,16 +219,16 @@
         },
         {
             "name": "wordpress-phoenix/wordpress-options-builder-class",
-            "version": "3.1.2",
+            "version": "4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Phoenix/wordpress-options-builder-class.git",
-                "reference": "f6c70c2410818d3abf0b361bc2830ad88d395826"
+                "reference": "78401fbbf078b46ab7dcc74b13d6d0a3e5ee2b15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Phoenix/wordpress-options-builder-class/zipball/f6c70c2410818d3abf0b361bc2830ad88d395826",
-                "reference": "f6c70c2410818d3abf0b361bc2830ad88d395826",
+                "url": "https://api.github.com/repos/WordPress-Phoenix/wordpress-options-builder-class/zipball/78401fbbf078b46ab7dcc74b13d6d0a3e5ee2b15",
+                "reference": "78401fbbf078b46ab7dcc74b13d6d0a3e5ee2b15",
                 "shasum": ""
             },
             "require": {
@@ -260,7 +260,7 @@
                 "utility",
                 "wordpress"
             ],
-            "time": "2018-03-14T03:12:24+00:00"
+            "time": "2018-05-07T23:02:26+00:00"
         }
     ],
     "packages-dev": [],
